@@ -3,6 +3,7 @@ from PIL import Image
 from flask import request
 from azure.cognitiveservices.vision.customvision.prediction import prediction_endpoint
 from azure.cognitiveservices.vision.customvision.prediction.prediction_endpoint import models
+import os
 from werkzeug.utils import secure_filename
 
 #app = Flask(__name__,static_url_path="/static")
@@ -33,7 +34,9 @@ def upload_file():
 		#sfname = 'static/img/'+str(secure_filename(f.filename))
         #f.save(sfname)
         isfile=True    
-	return render_template('index.html',isfile=isfile,predictions=results.predictions,fname=f.filename)#,imgadr=sfname)
+	fname_1 = os.path.join('/static/img',f.filename)
+	print fname_1
+	return render_template('index.html',isfile=isfile,predictions=results.predictions,fname=fname_1)
 
 if __name__ == "__main__":
     app.run()
