@@ -30,10 +30,10 @@ def upload_file():
 	if request.method == 'POST':
 		f = request.files['photo']
 		results = predictor.predict_image(projectid, f)
-		sfname = 'static/img/'+str(secure_filename(f.filename))
-        f.save(sfname)
+		#sfname = 'static/img/'+str(secure_filename(f.filename))
+        #f.save(sfname)
         isfile=True    
-	return render_template('index.html',isfile=isfile,predictions=results.predictions,fname=f.filename,imgadr=sfname)
+	return render_template('index.html',isfile=isfile,predictions=results.predictions,fname=f.filename)#,imgadr=sfname)
 
 if __name__ == "__main__":
     app.run()
