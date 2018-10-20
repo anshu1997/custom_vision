@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  <title>Python Flask App</title>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://i.icomoon.io/public/temp/172beea4ab/UntitledProject/style.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+</head>
+ 
+<body>
+<div class="container">
+<header class="navbar">
+  <form action="/upload" method="post" enctype="multipart/form-data" >
+      <span class="btn btn-default btn-file">
+      <input type="file" name="photo">
+      </span>
+
+    <input type="submit" value="Upload your image" class="btn btn-primary">
+  </form>
+</header>
+{% if isfile: %}
+  <h2>Filename:  {{ fname }} </h2>
+  <div class="container">
+  <img src={{ imgadr }} height="400" width="450" >
+  </div>
+  <!--url_for('static',filename='./img/test.jpg')-->
+  {% for prediction in predictions %}
+  <h3>{{ prediction.tag_name }} : {{ prediction.probability }}</h3>
+  {% endfor %}
+{% endif %}
+</div>
+</body>
+</html>
