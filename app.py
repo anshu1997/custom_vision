@@ -1,5 +1,5 @@
 from flask import Flask, render_template,url_for
-from PIL import Image
+#from PIL import Image
 from flask import request
 from azure.cognitiveservices.vision.customvision.prediction import prediction_endpoint
 from azure.cognitiveservices.vision.customvision.prediction.prediction_endpoint import models
@@ -30,16 +30,19 @@ def upload_file():
 	isfile=False
 	results = []
 	if request.method == 'POST':
-		f = request.files['photo']
-		results = predictor.predict_image(projectid, f)
+		f = request.files['photo']	
         isfile=True
-        target = os.path.join(APP_ROOT,'static/img')
+        target = os.path.join(APP_ROOT,'./static')
         print(target)
         filename = secure_filename(f.filename)
         destination = "/".join([target,filename])
         print(destination)
         f.save(destination)
-	return render_template('index.html',isfile=isfile,predictions=results.predictions,fname=destination)
+
+        ff = open(destination)
+        results = predictor.predict_image(projectid, ff)
+        ff.close()
+	return render_template('index.html',isfile=isfile,predictions=results.predictions,fname=filename)
 
 if __name__ == "__main__":
     app.run()
