@@ -12,9 +12,9 @@ app = Flask(__name__)
 
 
 # Now there is a trained endpoint that can be used to make a prediction
-training_key = "Your Training Key"
-prediction_key = "Your Prediction Key"
-projectid="Your Project ID"
+training_key = "3df4462657d8403090db9cb591a7e285"
+prediction_key = "3cb74b07eb924c75b11888bc64c776e4"
+projectid="7fa336ce-fb4d-49b0-a44a-46fce8c90483"
 
 predictor = prediction_endpoint.PredictionEndpoint(prediction_key)
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
